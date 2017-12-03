@@ -20,7 +20,12 @@ async function getInfo(req, res){
 
   return  request( options ).then(function(result){
     console.log("Issue Information Obtained ");
-    res.status(200).send({"speech": JSON.parse(result).Description,"followupEvent" : { "data" : JSON.parse(result) }, "name" : "issueInformation"});
+    res.status(200).send({"speech": JSON.parse(result).Description,
+                        "followupEvent" : { 
+                          "data" : JSON.parse(result),
+                          "name" : "issueInformation"
+                          }
+                        });
 
   }).catch(function(err){
     console.log("sIssue Information was not Obtained from API medic");
