@@ -20,9 +20,11 @@ async function getInfo(req, res){
 
   return  request( options ).then(function(result){
     console.log("Issue Information Obtained ");
-    res.status(200).send({"speech": JSON.parse(result).Description,
+    result = JSON.parse(result);
+    result["Symptoms"] = req.body.result.parameters.Symptoms;
+    res.status(200).send({
                         "followupEvent" : { 
-                          "data" : JSON.parse(result),
+                          "data" : result,
                           "name" : "issueInformation"
                           }
                         });
