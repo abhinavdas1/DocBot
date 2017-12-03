@@ -4,7 +4,7 @@ var url = require("../../baseURLs.json");
 
 async function getInfo(req, res){
 
-  let eventName;
+  let eventName = "issueInformation";
 
   if (req.body.result.parameters.MoreDetail) {
     eventName = "moreIssueInfo";
@@ -29,12 +29,13 @@ async function getInfo(req, res){
   }
 
   return  request( options ).then(function(result){
-    console.log("Issue Information Obtained ");
+    
     result = JSON.parse(result);
     result["Symptoms"] = req.body.result.parameters.Symptoms;
     if (req.body.result.parameters.MoreSymptoms){
       result.PossibleSymptoms = result.PossibleSymptoms.split(",").slice(0,3);
     }
+    console.log(result);
     res.status(200).send({
                         "followupEvent" : { 
                           "data" : result,
