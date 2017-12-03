@@ -7,7 +7,7 @@ async function getInfo(req, res){
 
   const options = {
     method: 'GET',
-    uri: url.baseUrl + url.loadIssueInfo + "/" + req.body.issueID + "/info",
+    uri: url.baseUrl + url.loadIssueInfo + "/" + req.body.result.parameters.Symptoms + "/info",
     qs : {
     	language : "en-gb",
     	format : "json",
