@@ -14,7 +14,8 @@ module.exports = function(app) {
 	  	getProposedSymptoms(req, res);
 	else if(req.body.result.action === "Diagnosis")
 	  	getDiagnosis(req, res);
-	else if(req.body.result.action === "IssueInfo")
+	else if(req.body.result.action === "IssueInfo" || req.body.result.action === "Userasksquestion.Userasksquestion-yes" ||
+		req.body.result.action === "Userasksquestion.Userasksquestion-yes.Userasksquestion-yes-yes")
 		getIssueInfo(req, res);
 
     

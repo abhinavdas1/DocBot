@@ -4,7 +4,17 @@ var url = require("../../baseURLs.json");
 
 async function getInfo(req, res){
 
+  let eventName;
 
+  if (req.body.result.parameters.MoreDetail) {
+    eventName = "moreIssueInfo";
+  }
+  else if (req.body.result.parameters.MoreSymptoms){
+    eventName = "issueRelatedSymtoms";
+  }
+  else if (req.body.result.parameters.Treatment){
+    eventName = "issueTreatment";
+  }
   const options = {
     method: 'GET',
     uri: url.baseUrl + url.loadIssueInfo + "/" + req.body.result.parameters.Symptoms + "/info",
@@ -22,10 +32,13 @@ async function getInfo(req, res){
     console.log("Issue Information Obtained ");
     result = JSON.parse(result);
     result["Symptoms"] = req.body.result.parameters.Symptoms;
+    if (req.body.result.parameters.MoreSymptoms){
+      result.PossibleSymptoms = result.PossibleSymptoms.split(",").slice(0,3);
+    }
     res.status(200).send({
                         "followupEvent" : { 
                           "data" : result,
-                          "name" : "issueInformation"
+                          "name" : eventName
                           }
                         });
 
