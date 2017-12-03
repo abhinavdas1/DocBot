@@ -1,0 +1,12 @@
+{
+
+	"baseUrl" : "https://sandbox-healthservice.priaid.ch/",
+	"loadSymptoms" : "symptoms",
+	"loadIssues" : "issues",
+	"loadIssueInfo" : "issues",
+	"loadDiagnosis" : "diagnosis",
+	"loadSpecialisations" : "diagnosis/specialisations",
+	"loadProposedSymptoms" : "symptoms/proposed",
+	"loadRedFlagText" : "redflag",
+	"login" : "https://sandbox-authservice.priaid.ch/login"
+}
