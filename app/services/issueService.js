@@ -20,11 +20,11 @@ async function getInfo(req, res){
 
   return  request( options ).then(function(result){
     console.log("Issue Information Obtained ");
-    res.status(200).send({"speech" : "Following are the DEtails about the Issues", "followupEvent" : { "data" : JSON.parse(result) }, "name" : "Issue Information"});
+    res.status(200).send({"speech" : "Following are the DEtails about the Issues" + JSON.parse(result), "followupEvent" : { "data" : JSON.parse(result) }, "name" : "issueInformation"});
 
   }).catch(function(err){
     console.log("sIssue Information was not Obtained from API medic");
-        res.status(400).send({"speech" : "Issue Information Not found or Issue Id is wrong", "followupEvent" : { "data" : [] }, "name" : "Issue Information"});
+        res.status(400).send({"speech" : "Issue Information Not found or Issue Id is wrong", "followupEvent" : { "data" : [] }, "name" : "issueInformation"});
 
     console.log(err);
   });
