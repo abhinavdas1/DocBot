@@ -16,7 +16,7 @@ async function getToken(req, res, next){
     headers : {
             "Authorization" : "Bearer " +  api_key +  ":" +  computedHashString
     },
-    uri: 'https://sandbox-authservice.priaid.ch/login',
+    uri: uri,
     json: true
   }
 

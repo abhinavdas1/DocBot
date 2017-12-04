@@ -45,12 +45,14 @@ async function getDiagnosis(req, res){
         + result[0].Issue.Name
         + ". It is also possible that you are having" 
         + result[1].Issue.Name); 
-    }else {
+    }else if (result.length == 1){
       speech.push("High chances are that you are suffering through " 
         + result[0].Issue.Name); 
+    }else{
+      speech.push("Ahhh.. I did not exactly get what you are suffering through. It would be great if you can be more specific about your symptoms");
     }
     console.log("Speech" + speech[Math.floor(Math.random()*speech.length)])
-    res.status(200).send({"speech" : speech[Math.floor(Math.random()*speech.length)], "followupEvent" : {"data" : {"Issues" : speech}, "name" : "diagnosisResult"}});
+    res.status(200).send({"speech" : speech[Math.floor(Math.random()*speech.length)], "followupEvent" : {"data" : {"Issues" : speech[Math.floor(Math.random()*speech.length)]}, "name" : "diagnosisResult"}});
 
   }).catch(function(err){
     console.log("Diagnosis was not Obtained from API medic");
