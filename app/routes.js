@@ -12,7 +12,7 @@ module.exports = function(app) {
 	console.log(req.body);
 	if(req.body.result.action === "ProposedSymptoms")
 	  	getProposedSymptoms(req, res);
-	else if(req.body.result.action === "Diagnosis")
+	else if(req.body.result.action === "Diagnosis" || req.body.result.action === "DiagnosisList")
 	  	getDiagnosis(req, res);
 	else if(req.body.result.action === "IssueInfo" || req.body.result.action === "Userasksquestion.Userasksquestion-yes" ||
 		req.body.result.action === "Userasksquestion.Userasksquestion-yes.Userasksquestion-yes-yes")
