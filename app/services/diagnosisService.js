@@ -49,7 +49,7 @@ async function getDiagnosis(req, res){
       speech.push("High chances are that you are suffering through " 
         + result[0].Issue.Name); 
     }
-    
+    console.log("Speech" + speech[Math.floor(Math.random()*speech.length)])
     res.status(200).send({"speech" : speech[Math.floor(Math.random()*speech.length)], "followupEvent" : {"name" : "diagnosisResult"}});
 
   }).catch(function(err){
