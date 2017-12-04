@@ -50,7 +50,7 @@ async function getDiagnosis(req, res){
         + result[0].Issue.Name); 
     }
     console.log("Speech" + speech[Math.floor(Math.random()*speech.length)])
-    res.status(200).send({"speech" : speech[Math.floor(Math.random()*speech.length)], "followupEvent" : {"data" : {"Issues" : speech} "name" : "diagnosisResult"}});
+    res.status(200).send({"speech" : speech[Math.floor(Math.random()*speech.length)], "followupEvent" : {"data" : {"Issues" : speech}, "name" : "diagnosisResult"}});
 
   }).catch(function(err){
     console.log("Diagnosis was not Obtained from API medic");
