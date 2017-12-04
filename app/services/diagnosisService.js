@@ -25,7 +25,32 @@ async function getDiagnosis(req, res){
 
   return  request( options ).then(function(result){
     console.log("Diagnosis Obtained ");
-    res.status(200).send({"speech" : "Following is the Diagnosis", "followupEvent" : { "data" : {"issues" : JSON.parse(result) }, "name" : "diagnosisResult"}});
+    result = JSON.parse(result);
+    let speech = [];
+    if (result.length > 2) {
+      speech.push("Umm, most likely you are suffering through " 
+        + result[0].Issue.Name 
+        + ".If not this, you might be having " 
+        + result[1].Issue.Name + " or "
+        + result[2].Issue.Name + ".If you want, I can tell you more about these or how these can be treated?");
+      
+      speech.push("High chances are that you are suffering through " 
+        + result[0].Issue.Name 
+        + ". It could also be " 
+        + result[1].Issue.Name + " or "
+        + result[2].Issue.Name + ".If you want I can tell you more about these or how you can treat them.");
+
+    }else if (result.length == 2){
+      speech.push("Most probably you are suffering through " 
+        + result[0].Issue.Name
+        + ". It is also possible that you are having" 
+        + result[1].Issue.Name); 
+    }else {
+      speech.push("High chances are that you are suffering through " 
+        + result[0].Issue.Name); 
+    }
+    
+    res.status(200).send({"speech" : speech[Math.floor(Math.random()*speech.length)], "followupEvent" : {"name" : "diagnosisResult"}});
 
   }).catch(function(err){
     console.log("Diagnosis was not Obtained from API medic");
