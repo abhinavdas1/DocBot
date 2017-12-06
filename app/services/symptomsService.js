@@ -4,13 +4,11 @@ var url = require("../../baseURLs.json");
 
 async function getProposedSymptoms(req, res){
 
-  let symptoms = new Array(req.body.result.parameters.Symptoms);
-  console.log("symptoms" + symptoms);
   const options = {
     method: 'GET',
     uri: url.baseUrl + url.loadProposedSymptoms,
     qs : {
-    	symptoms : JSON.stringify(symptoms), 
+    	symptoms : JSON.stringify(req.body.result.parameters.Symptoms), 
     	gender : "male",
     	year_of_birth : 1994,
     	language : "en-gb",
