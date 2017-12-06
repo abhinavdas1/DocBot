@@ -23,7 +23,7 @@ async function getProposedSymptoms(req, res){
   return  request( options ).then(function(result){
     result = JSON.parse(result);
     let speech = "okay! So, are you feeling any of these " + result[0].Name + ", " + result[1].Name + " or, " + result[2].Name +"?"; 
-    res.status(200).send({"speech" : "Following are the Proposed Symptoms", "followupEvent" : { "data" : {"symptomsProp" : speech} , "name" : "symtomProposal"}});
+    res.status(200).send({"speech" : "Following are the Proposed Symptoms", "followupEvent" : { "data" : {"symptomsProp" : speech, "Symptoms" : req.body.result.parameters.Symptoms} , "name" : "symtomProposal"}});
 
   }).catch(function(err){
     console.log("symptoms was not Obtained from API medic");
